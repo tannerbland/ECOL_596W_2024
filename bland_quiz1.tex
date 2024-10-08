@@ -1,0 +1,263 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage[sc]{mathpazo}
+\renewcommand{\sfdefault}{lmss}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{
+ pdfstartview={XYZ null null 1}}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
+
+\makeatother
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+
+
+
+
+
+
+The results below are generated from an R script.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+---
+  title: \hlsng{"Quiz 1: Part 2"}
+format: html
+editor: visual
+embed-resources: true
+---
+
+\hlcom{  ## Part 2: Coding in action}
+
+\hlcom{  ### Instructions}
+
+  Please answer these questions in R using whatever syntax makes sense to you. Feel free to use the R help pages and/or notes from class.
+
+**If you use Google or ChatGPT etc. to help you get to an answer, please note so on your answer**
+
+  Submit your answers as an html file. Name it \hlsng{"lastname_quiz1.html"}. Two submission options:\textbackslash{}
+1. Email to mcnew\textbackslash{}@arizona.edu 2. Create a branch in your forked-and-cloned class repo. Add the html file to the student_contributions/ folder. Submit a pull request to \hlkwd{Sabrina} (extra credit).
+
+```\{r, message = F\}
+\hlcom{# load packages and data}
+\hlkwd{library}(dslabs)
+\hlkwd{library}(dplyr)
+```
+
+\hlcom{#### Load your data:}
+
+Load the *swallows.csv* into R, call it swallows. This data frame lists results of an experiment on tree swallows. Each row is a nest. Nests were put into one of two **treatments**: simulated \hlkwd{predation} (predator), or \hlkwd{control} (control). Along with treatment you have the following columns:\textbackslash{}
+**nest_fate** = whether the nest fledged any young or whether they all died\textbackslash{}
+**brood** = number of nestlings\textbackslash{}
+**n_fledged** = number of nestlings that fledged.
+
+You also have a separate data frame called *brightness.csv* where each row lists the plumage \hlkwd{brightness} (a sexual signal) for the female at each nest. Load this one up too.
+
+```\{r\}
+\hlcom{# Answer}
+swallows <- \hlkwd{read.csv}(\hlsng{'swallows.csv'})
+brightness <- \hlkwd{read.csv}(\hlsng{'brightness.csv'})
+
+\hlcom{# Google? y/n [n]}
+```
+
+\hlcom{#### Wrangle your data}
+
+You realize that you want to add brightness information onto your main swallows data frame. Join these data frames using nest_id as your key variable. Describe how you would check to make sure this join worked as intended.
+
+```\{r\}
+\hlcom{#Answer}
+
+bright_swa <- \hlkwd{merge}(swallows, brightness, by=\hlsng{'nestbox'})
+
+\hlcom{# Google? y/n [y]}
+```
+
+Inspect your combined data frame. Do some sort of quick sanity check on each column to catch any obvious entry errors. Correct as necessary
+
+```\{r\}
+\hlcom{# Answer}
+
+bright_swa <- \hlkwd{na.omit}(bright_swa)
+
+\hlcom{# Google y/n [n]}
+```
+
+Create a new column called prop_fledged that contains the proportion of nestlings that fledged from each nest.
+
+```\{r\}
+\hlcom{#Answer}
+
+bright_swa <- bright_swa %>%
+  \hlkwd{mutate}(prop_fledged = n_fledged/brood) %>%
+  \hlkwd{mutate_all}(~\hlkwd{replace}(., \hlkwd{is.nan}(.), 0))
+
+
+\hlcom{# Google? y/n [y for dropping NaNs]}
+```
+
+\hlcom{#### Explore the data}
+
+What was the mean proportion of nestlings fledged in each treatment?
+
+```\{r\}
+\hlcom{# Answer}
+
+bright_swa %>%
+  \hlkwd{group_by}(treatment) %>%
+  \hlkwd{summarize}(average = \hlkwd{mean}(prop_fledged))
+
+\hlcom{# Google? y/n [n]}
+```
+
+Create a plot showing fledging success differences between treatments
+
+```\{r\}
+\hlcom{#Answer}
+
+\hlkwd{library}(ggplot2)
+fledg_plot <- bright_swa %>%
+  \hlkwd{ggplot}(\hlkwd{aes}(treatment, prop_fledged)) +
+  \hlkwd{geom_violin}()
+
+\hlcom{# Google? y/n [n]}
+```
+
+Is there any evidence that female brightness influenced fledging success? Create a plot to visually investigate this question.
+
+```\{r\}
+\hlcom{#Answer}
+\hlcom{# There seems to be no relationhsip between brightness and fledging success.The}
+\hlcom{# graph depicts no discernable impact of brightness on fledging success.}
+
+bright_plot <- bright_swa %>%
+  \hlkwd{ggplot}(\hlkwd{aes}(brightness, prop_fledged, color = treatment)) +
+  \hlkwd{geom_jitter}()
+
+\hlcom{# Google? y/n [n]}
+```
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:12:10: unexpected symbol\\\#\# 11: \\\#\# 12: \ \ Please answer\\\#\# \ \ \ \ \ \ \ \ \ \ \ \ \ \textasciicircum{}}}\end{kframe}
+\end{knitrout}
+
+The R session information (including the OS info, R version and all
+packages used):
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{sessionInfo}\hldef{()}
+\end{alltt}
+\begin{verbatim}
+## R version 4.4.1 (2024-06-14 ucrt)
+## Platform: x86_64-w64-mingw32/x64
+## Running under: Windows 11 x64 (build 22621)
+## 
+## Matrix products: default
+## 
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.utf8  LC_CTYPE=English_United States.utf8   
+## [3] LC_MONETARY=English_United States.utf8 LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.utf8    
+## 
+## time zone: America/Phoenix
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] knitr_1.47    ggplot2_3.5.1 dplyr_1.1.4   dslabs_0.8.0 
+## 
+## loaded via a namespace (and not attached):
+##  [1] crayon_1.5.3      vctrs_0.6.5       nlme_3.1-164      cli_3.6.3        
+##  [5] xfun_0.45         rlang_1.1.4       highr_0.11        generics_0.1.3   
+##  [9] glue_1.7.0        labeling_0.4.3    colorspace_2.1-0  scales_1.3.0     
+## [13] fansi_1.0.6       grid_4.4.1        evaluate_0.24.0   munsell_0.5.1    
+## [17] tibble_3.2.1      lifecycle_1.0.4   compiler_4.4.1    pkgconfig_2.0.3  
+## [21] mgcv_1.9-1        rstudioapi_0.16.0 lattice_0.22-6    farver_2.1.2     
+## [25] R6_2.5.1          tidyselect_1.2.1  utf8_1.2.4        pillar_1.9.0     
+## [29] splines_4.4.1     magrittr_2.0.3    Matrix_1.7-0      tools_4.4.1      
+## [33] withr_3.0.0       gtable_0.3.5
+\end{verbatim}
+\begin{alltt}
+\hlkwd{Sys.time}\hldef{()}
+\end{alltt}
+\begin{verbatim}
+## [1] "2024-10-08 03:44:05 MST"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+\end{document}
